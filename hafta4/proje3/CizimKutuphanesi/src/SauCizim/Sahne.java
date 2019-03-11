@@ -28,4 +28,9 @@ public class Sahne {
             siradaki.ciz(g2d);
         }
     }
+    public void sekilleriHareketEttir(){
+        for(Sekil siradaki:sekilListesi){
+            siradaki.hareketEt();
+        }
+    }
 }

@@ -17,11 +17,18 @@ public abstract class Sekil {
     
     
     public abstract void    ciz(Graphics g2d);  
-
+    public abstract void    hareketEt();
+    public abstract boolean carpismaVarmi();
+    
+    public enum YON{ YON_SOL,YON_SAG,YON_YUKARI,YON_ASAGI};
+    
     
     protected Color renk;
 
     protected Point konum;
+    
+    protected YON   yon;
+    
     
     public Color    renkGetir(){
         return renk;
@@ -34,7 +41,17 @@ public abstract class Sekil {
     public Point    konumGetir(){
         return konum;
     }
-    public void     konumAta(Point konum){
+    public void     pozisyonAta(Point konum){
         this.konum = konum;
     }   
+    
+    public YON      yonGetir(){
+        return yon;
+    }
+    
+    public void     yonAta(YON yon){
+        this.yon = yon;
+    }
+    
+    
 }
