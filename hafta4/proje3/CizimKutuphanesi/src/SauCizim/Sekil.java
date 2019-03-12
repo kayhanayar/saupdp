@@ -23,11 +23,11 @@ public abstract class Sekil {
     public enum YON{ YON_SOL,YON_SAG,YON_YUKARI,YON_ASAGI};
     
     
-    protected Color renk;
+    protected Color renk = Color.BLACK;
 
-    protected Point konum;
+    protected Point konum = new Point();
     
-    protected YON   yon;
+    protected YON   yon = YON.YON_SAG;
     
     
     public Color    renkGetir(){

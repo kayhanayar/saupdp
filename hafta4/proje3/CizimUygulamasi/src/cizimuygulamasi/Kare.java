@@ -15,6 +15,10 @@ import java.awt.Graphics;
 public class Kare extends Sekil {
     private int genislik;
 
+    public Kare(){
+        yon = YON.YON_SAG;
+    }
+    
     public int getGenislik() {
         return genislik;
     }
@@ -32,7 +36,21 @@ public class Kare extends Sekil {
 
     @Override
     public void hareketEt() {
-        
+        switch(yon){
+            case YON_SAG:
+                konum.x++;
+                break;
+            case YON_SOL:
+                konum.x--;
+                break;
+            case YON_YUKARI:
+                konum.y++;
+                break;
+            case YON_ASAGI:
+                konum.y--;
+                break;
+         
+        }
     }
 
     @Override

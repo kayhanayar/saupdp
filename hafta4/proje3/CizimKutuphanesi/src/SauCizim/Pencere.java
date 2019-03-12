@@ -36,7 +36,11 @@ public class Pencere extends JFrame {
         cizimListenerListesi.add(dinleyici);
                
     }
-    
+    public void arkaPlaniTemizle(Graphics2D g){
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.setColor(getForeground());
+    }
     public interface CizimDinleyici{
         void cizim(Graphics2D g);
     }

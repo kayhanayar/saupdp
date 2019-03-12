@@ -8,47 +8,61 @@ package cizimuygulamasi;
 import SauCizim.Pencere;
 import SauCizim.Sahne;
 import java.awt.Graphics2D;
-
-/**
- *
- * @author kayhan
- */
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CizimUygulamasi {
-    class CizimFonksiyonu implements Pencere.CizimDinleyici{
+
+    Timer t = new Timer();
+    
+    Sahne sahne = new Sahne();
+    
+    Pencere pencerem = new Pencere(300, 400);
+    
+    
+    public CizimUygulamasi() {
+        
+        Kare k1 = new Kare();
+
+        k1.setGenislik(100);
+
+        sahne.sekilEkle(k1);
+
+        //Ciz sinifinden bir nesne oluştururken nesnenin bağlı olacağı CizimUygulamasi nesnesini belirtmemiz gerekiyor
+        //Yani iç sınıftan nesne oluştura bilmek için öncelikle dış sınıftan bir nesne oluşturmalıyız.
+        pencerem.cizimDinleyiciEkle(new CizimFonksiyonu());
+
+        pencerem.setVisible(true);
+        
+        
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                
+                pencerem.repaint();
+                
+            }
+        },10,10);
+    }
+    
+    class CizimFonksiyonu implements Pencere.CizimDinleyici {
 
         @Override
         public void cizim(Graphics2D g) {
-            g.drawRect(100, 100, 100, 100);
+            pencerem.arkaPlaniTemizle(g);
+            sahne.sahneyiCiz(g);
+           
+            sahne.sekilleriHareketEttir();
+
         }
 
     }
-    Sahne sahne= new Sahne();
 
     public static void main(String[] args) {
-
-        
         //main fonksiyonu CizimUygulaması sinifi içerisinde tanıtılmış olsa dahi
         //Bu sınıfın fonksiyonlarına erişemez. CizimUygulaması nesnesi oluşturmadan
         //metotlara erişme şansımız olmaz.
         CizimUygulamasi c = new CizimUygulamasi();
-        
-        Pencere pencerem = new Pencere(300, 400);
-        
-               
-        Kare k1  = new Kare();
-        
-        k1.setGenislik(100);
-        
-        c.sahne.sekilEkle(k1);
-        
-        //Ciz sinifinden bir nesne oluştururken nesnenin bağlı olacağı CizimUygulamasi nesnesini belirtmemiz gerekiyor
-        //Yani iç sınıftan nesne oluştura bilmek için öncelikle dış sınıftan bir nesne oluşturmalıyız.
-                
-        pencerem.cizimDinleyiciEkle(c.new CizimFonksiyonu());
-        
-        pencerem.setVisible(true);
     }
-    
+
 }
